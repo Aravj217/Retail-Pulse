@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -97,17 +98,20 @@ header {visibility:hidden;}
 # =====================================================
 # DATA LOADING (with error protection)
 # =====================================================
-DATA_PATH = r"D:\Retail Pulse Project\data"
+BASE_DIR = Path(__file__).parent.parent
+DATA_PATH = BASE_DIR / "data"
 
 @st.cache_data
 def load_data():
-    # Wrap in try/except or placeholders if testing locally without explicit files
-    cleaned_df = pd.read_csv(f"{DATA_PATH}\\cleaned_retail.csv")
-    segments = pd.read_csv(f"{DATA_PATH}\\customer_segments.csv")
-    churn = pd.read_csv(f"{DATA_PATH}\\customer_churn.csv")
-    forecast = pd.read_csv(f"{DATA_PATH}\\sales_forecast.csv")
-    inventory = pd.read_csv(f"{DATA_PATH}\\inventory_recommendations.csv")
+
+    cleaned_df = pd.read_csv(DATA_PATH / "cleaned_retail.csv")
+    segments = pd.read_csv(DATA_PATH / "customer_segments.csv")
+    churn = pd.read_csv(DATA_PATH / "customer_churn.csv")
+    forecast = pd.read_csv(DATA_PATH / "sales_forecast.csv")
+    inventory = pd.read_csv(DATA_PATH / "inventory_recommendations.csv")
+
     cleaned_df["InvoiceDate"] = pd.to_datetime(cleaned_df["InvoiceDate"])
+
     return cleaned_df, segments, churn, forecast, inventory
 
 # Load datasets
