@@ -145,7 +145,7 @@ with st.sidebar:
     )
 
 st.sidebar.markdown("<br><hr style='border-color: rgba(255,255,255,0.15)'>", unsafe_allow_html=True)
-st.sidebar.success("RetailPulse Engine v.1.0 Active🌍")
+st.sidebar.success("RetailPulse Engine Active🌍")
 
 # Helper function to inject responsive Plotly template styles
 def get_plotly_layout():
